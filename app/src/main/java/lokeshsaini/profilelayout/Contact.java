@@ -3,6 +3,7 @@ package lokeshsaini.profilelayout;
 import java.util.ArrayList;
 
 public class Contact {
+    private static int lastContactId = 0;
     private String mName;
     private boolean mOnline;
 
@@ -10,16 +11,6 @@ public class Contact {
         mName = name;
         mOnline = online;
     }
-
-    public String getName() {
-        return mName;
-    }
-
-    public boolean isOnline() {
-        return mOnline;
-    }
-
-    private static int lastContactId = 0;
 
     public static ArrayList<Contact> createContactsList(int numContacts) {
         ArrayList<Contact> contacts = new ArrayList<Contact>();
@@ -29,5 +20,13 @@ public class Contact {
         }
 
         return contacts;
+    }
+
+    public String getName() {
+        return mName;
+    }
+
+    public boolean isOnline() {
+        return mOnline;
     }
 }
