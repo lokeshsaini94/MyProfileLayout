@@ -12,17 +12,8 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class TabFragment extends Fragment {
-    ArrayList<Contact> contacts;
-
-
-    public TabFragment() {
-        // Required empty public constructor
-    }
-
+    ArrayList<Item> items;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -30,21 +21,21 @@ public class TabFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_tab, container, false);
         // Lookup the recyclerview in activity layout
-        RecyclerView rvContacts = (RecyclerView) root.findViewById(R.id.rvContacts);
+        RecyclerView rvItems = (RecyclerView) root.findViewById(R.id.rvItems);
 
-        // Initialize contacts
-        contacts = Contact.createContactsList(15);
+        // Initialize items
+        items = Item.createItemsList(10);
         // Create adapter passing in the sample user data
-        ContactsAdapter adapter = new ContactsAdapter(getContext(), contacts);
+        ItemsAdapter adapter = new ItemsAdapter(getContext(), items);
 
 //        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
 //        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-//        rvContacts.setLayoutManager(layoutManager);
+//        rvItems.setLayoutManager(layoutManager);
 
         // Attach the adapter to the recyclerview to populate items
-        rvContacts.setAdapter(adapter);
+        rvItems.setAdapter(adapter);
         // Set layout manager to position the items
-        rvContacts.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rvItems.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         // Inflate the layout for this fragment
         return root;
