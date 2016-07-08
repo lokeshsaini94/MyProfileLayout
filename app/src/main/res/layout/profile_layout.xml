@@ -5,7 +5,7 @@
     android:paddingBottom="50dp"
     android:paddingTop="50dp">
 
-    <de.hdodenhof.circleimageview.CircleImageView
+    <lokeshsaini.profilelayout.RoundedImageView
         android:id="@+id/profile_image"
         android:layout_width="100dp"
         android:layout_height="100dp"
