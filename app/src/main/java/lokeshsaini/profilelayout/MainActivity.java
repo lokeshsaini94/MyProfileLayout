@@ -142,7 +142,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         setupTabIcons();
-
     }
 
     //Fragment to tabs assignment
@@ -200,7 +199,6 @@ public class MainActivity extends AppCompatActivity {
                 } else if (options[item].equals("Choose from Gallery")) {
                     Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                     startActivityForResult(intent, 2);
-
                 } else if (options[item].equals("Cancel")) {
                     dialog.dismiss();
                 }
