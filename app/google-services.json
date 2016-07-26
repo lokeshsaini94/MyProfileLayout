@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "875978060472",
+    "firebase_url": "https://my-profile-layout.firebaseio.com",
+    "project_id": "my-profile-layout",
+    "storage_bucket": "my-profile-layout.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:875978060472:android:a06d6ba5001ebc6d",
+        "android_client_info": {
+          "package_name": "lokeshsaini.profilelayout"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "875978060472-atp8arm19u5vrktro726it82mnqr6dk3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6QdEHVwoeGIKf3k6oWD47K7gxV3x9Ehg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
