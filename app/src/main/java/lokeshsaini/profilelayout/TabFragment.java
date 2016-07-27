@@ -3,18 +3,30 @@ package lokeshsaini.profilelayout;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.TextView;
+
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class TabFragment extends Fragment {
-    String itemName;
-    int itemCounter;
+    public final String ITEMS = "items";
+
+    private String itemName;
+    private int itemCounter;
+
+    private RecyclerView recyclerView;
+    private LinearLayoutManager linearLayoutManager;
+
+    private DatabaseReference mRootRef;
+    private DatabaseReference mconditionRef;
+    private FirebaseRecyclerAdapter<ItemData, ItemViewHolder> firebaseRecyclerAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -22,56 +34,38 @@ public class TabFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_tab, container, false);
 
-        itemName = "Item ";
-        itemCounter = 1;
+        recyclerView = (RecyclerView) root.findViewById(R.id.recyclerView);
 
-        // 1. get a reference to recyclerView
-        final RecyclerView recyclerView = (RecyclerView) root.findViewById(R.id.recyclerView);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        linearLayoutManager = new LinearLayoutManager(getActivity());
 
-        // this is data for recycler view
-        final ItemData itemsData[] = {
-                new ItemData(itemName + itemCounter++),
-                new ItemData(itemName + itemCounter++),
-                new ItemData(itemName + itemCounter++),
-                new ItemData(itemName + itemCounter++),
-                new ItemData(itemName + itemCounter++),
-                new ItemData(itemName + itemCounter++),
-                new ItemData(itemName + itemCounter++),
-                new ItemData(itemName + itemCounter++),
-                new ItemData(itemName + itemCounter++),
-                new ItemData(itemName + itemCounter++),
-                new ItemData(itemName + itemCounter++),
-                new ItemData(itemName + itemCounter++),
-                new ItemData(itemName + itemCounter++),
-                new ItemData(itemName + itemCounter++),
-                new ItemData(itemName + itemCounter++)
+        mRootRef = FirebaseDatabase.getInstance().getReference();
+        mconditionRef = mRootRef.child("items");
+
+        firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<ItemData, ItemViewHolder>(
+                ItemData.class,
+                R.layout.cards_layout,
+                ItemViewHolder.class,
+                mconditionRef
+        ) {
+            @Override
+            protected void populateViewHolder(ItemViewHolder viewHolder, ItemData model, int position) {
+                viewHolder.mtext.setText(model.getItem());
+            }
         };
 
-        // 2. set layoutManger
+        recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        // 3. create an adapter
-        MyAdapter mAdapter = new MyAdapter(itemsData);
-        // 4. set adapter
-        recyclerView.setAdapter(mAdapter);
-        // 5. set item animator to DefaultAnimator
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(firebaseRecyclerAdapter);
 
-        // 6. on Item touch listener
-        recyclerView.addOnItemTouchListener(
-                new RecyclerItemClickListener(getContext(), new RecyclerItemClickListener.OnItemClickListener() {
-                    @Override public void onItemClick(View view, int position) {
-                        int x = position + 1;
-                        String item = itemName + x;
-                        Toast.makeText(getActivity(), item,
-                                Toast.LENGTH_SHORT).show();
-                    }
-                })
-        );
-
-        // Inflate the layout for this fragment
         return root;
     }
 
+    public static class ItemViewHolder extends RecyclerView.ViewHolder {
+        TextView mtext;
+
+        public ItemViewHolder(View itemView) {
+            super(itemView);
+            mtext = (TextView) itemView.findViewById(R.id.card_content);
+        }
+    }
 }

@@ -1,20 +1,19 @@
 package lokeshsaini.profilelayout;
 
-
 public class ItemData {
-    private String mItemText;
+    private String item;
 
     public ItemData() {}
 
-    public ItemData(String mItemText) {
-        this.mItemText = mItemText;
+    public ItemData(String item) {
+        this.item = item;
     }
 
-    public String getmItemText() {
-        return mItemText;
+    public String getItem() {
+        return item;
     }
 
-    public void setmItemText(String mItemText) {
-        this.mItemText = mItemText;
+    public void setItem(String item) {
+        this.item = item;
     }
 }
