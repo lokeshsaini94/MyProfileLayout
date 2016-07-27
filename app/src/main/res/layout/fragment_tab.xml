@@ -6,9 +6,8 @@
     tools:context="lokeshsaini.profilelayout.TabFragment">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rvItems"
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="@dimen/margin_16dp" />
+        android:layout_height="match_parent" />
 
 </RelativeLayout>
